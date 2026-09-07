@@ -11,10 +11,12 @@ indent_style = space
 indent_size = 4
 csharp_style_namespace_declarations = file_scoped:warning
 csharp_style_var_when_type_is_apparent = true:suggestion
+
+# 'Error' is a domain term in this template; the keyword conflict is accepted.
+dotnet_diagnostic.CA1716.severity = none
 dotnet_diagnostic.CA1707.severity = none
-dotnet_diagnostic.CA1848.severity = none
+dotnet_diagnostic.CA1848.severity = suggestion
 dotnet_diagnostic.CA2254.severity = none
-dotnet_style_operator_placement_when_wrapping = beginning_of_line
 
 [*.{json,yml,yaml,xml,props,targets}]
 indent_style = space

@@ -15,4 +15,8 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
 
+  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.UnitTests')) OR $(MSBuildProjectName.EndsWith('.IntegrationTests')) OR $(MSBuildProjectName.EndsWith('ArchitectureTests'))">
+    <Using Include="Xunit" />
+  </ItemGroup>
+
 </Project>
