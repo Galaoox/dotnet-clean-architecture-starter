@@ -26,6 +26,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p "$HOME/.nuget-packages"
+          chmod -R a+rwX "$HOME/.nuget-packages"
 
           dotnet10() {
             docker run --rm \
