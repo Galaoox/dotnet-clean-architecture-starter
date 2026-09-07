@@ -9,4 +9,4 @@ TestResults/
 coverage/
 *.coverage
 *.trx
-dotnet10.sh
+/dotnet10.sh

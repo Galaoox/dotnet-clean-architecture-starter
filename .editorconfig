@@ -18,6 +18,11 @@ dotnet_diagnostic.CA1707.severity = none
 dotnet_diagnostic.CA1848.severity = suggestion
 dotnet_diagnostic.CA2254.severity = none
 
+[**/Migrations/*.cs]
+charset = unset
+dotnet_diagnostic.IDE0161.severity = none
+dotnet_diagnostic.CA1861.severity = none
+
 [*.{json,yml,yaml,xml,props,targets}]
 indent_style = space
 indent_size = 2

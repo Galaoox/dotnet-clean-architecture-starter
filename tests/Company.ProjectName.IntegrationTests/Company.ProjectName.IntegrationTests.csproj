@@ -4,6 +4,7 @@
     <RootNamespace>Company.ProjectName.IntegrationTests</RootNamespace>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CS0619</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +14,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
     <PackageReference Include="Testcontainers.PostgreSQL" />
     <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testconfig.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

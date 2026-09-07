@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify with .NET 10 SDK container
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          dotnet10() {
+            docker run --rm \
+              --network host \
+              --user "$(id -u):$(id -g)" \
+              --group-add "$(stat -c '%g' /var/run/docker.sock)" \
+              -e DOTNET_CLI_HOME=/tmp/dotnet \
+              -e DOTNET_NOLOGO=1 \
+              -e TESTCONTAINERS_RYUK_DISABLED=true \
+              -e NUGET_PACKAGES=/tmp/nuget \
+              -v "$PWD:/src" \
+              -v /var/run/docker.sock:/var/run/docker.sock \
+              -w /src \
+              mcr.microsoft.com/dotnet/sdk:10.0 \
+              dotnet "$@"
+          }
+
+          dotnet10 --version
+          dotnet10 restore --locked-mode
+          dotnet10 format --verify-no-changes
+          dotnet10 build Company.ProjectName.slnx --configuration Release --no-restore
+          dotnet10 test tests/Company.ProjectName.Domain.UnitTests --configuration Release --no-build
+          dotnet10 test tests/Company.ProjectName.Application.UnitTests --configuration Release --no-build
+          dotnet10 test tests/Company.ProjectName.ArchitectureTests --configuration Release --no-build
+          dotnet10 test tests/Company.ProjectName.IntegrationTests --configuration Release --no-build
+
+      - name: Verify generated template
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            --network host \
+            --user "$(id -u):$(id -g)" \
+            --group-add "$(stat -c '%g' /var/run/docker.sock)" \
+            -e DOTNET_CLI_HOME=/tmp/dotnet \
+            -e DOTNET_NOLOGO=1 \
+            -e TESTCONTAINERS_RYUK_DISABLED=true \
+            -e NUGET_PACKAGES=/tmp/nuget \
+            -v "$PWD:/src" \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -w /src \
+            mcr.microsoft.com/dotnet/sdk:10.0 \
+            sh -c '
+              set -eu
+              rm -rf /tmp/generated
+              dotnet new install /src --force
+              dotnet new cleanarch -n Ci.Sample -o /tmp/generated
+              test ! -n "$(grep -RIl "Company.ProjectName" /tmp/generated || true)"
+              cd /tmp/generated
+              dotnet restore --locked-mode
+              dotnet build Ci.Sample.slnx --configuration Release --no-restore
+              dotnet test tests/Ci.Sample.Domain.UnitTests --configuration Release --no-build
+              dotnet test tests/Ci.Sample.Application.UnitTests --configuration Release --no-build
+              dotnet test tests/Ci.Sample.ArchitectureTests --configuration Release --no-build
+            '

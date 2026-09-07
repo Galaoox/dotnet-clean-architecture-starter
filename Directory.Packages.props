@@ -14,6 +14,8 @@
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(AspNetCoreVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Identity.Stores" Version="$(AspNetCoreVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(AspNetCoreVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="$(AspNetCoreVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="$(AspNetCoreVersion)" />
   </ItemGroup>
 
   <ItemGroup Label="Persistence">

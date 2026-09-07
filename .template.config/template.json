@@ -22,7 +22,6 @@
         "**/bin/**",
         "**/obj/**",
         "**/TestResults/**",
-        "**/packages.lock.json",
         "**/.idea/**",
         "**/.vs/**",
         "dotnet10.sh",
