@@ -9,4 +9,4 @@ TestResults/
 coverage/
 *.coverage
 *.trx
-packages.lock.json
+dotnet10.sh
