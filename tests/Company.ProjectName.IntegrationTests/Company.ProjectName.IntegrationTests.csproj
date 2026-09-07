@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Company.ProjectName.IntegrationTests</RootNamespace>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Company.ProjectName.Api\Company.ProjectName.Api.csproj" />
+    <ProjectReference Include="..\..\src\Company.ProjectName.Infrastructure\Company.ProjectName.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Testcontainers.PostgreSQL" />
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+</Project>

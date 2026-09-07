@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Company.ProjectName.ArchitectureTests</RootNamespace>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Company.ProjectName.Api\Company.ProjectName.Api.csproj" />
+    <ProjectReference Include="..\..\src\Company.ProjectName.Application\Company.ProjectName.Application.csproj" />
+    <ProjectReference Include="..\..\src\Company.ProjectName.Domain\Company.ProjectName.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Company.ProjectName.Infrastructure\Company.ProjectName.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TngTech.ArchUnitNET.xUnit" />
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+</Project>

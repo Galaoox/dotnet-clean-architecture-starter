@@ -1,0 +1,12 @@
+bin/
+obj/
+TestResults/
+*.user
+*.suo
+.vs/
+.idea/
+.env
+coverage/
+*.coverage
+*.trx
+packages.lock.json
