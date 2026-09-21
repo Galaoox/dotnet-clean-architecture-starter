@@ -4,7 +4,7 @@
     <AspNetCoreVersion>10.0.11</AspNetCoreVersion>
     <EfCoreVersion>10.0.11</EfCoreVersion>
     <OpenTelemetryVersion>1.18.0</OpenTelemetryVersion>
-    <IdentityModelVersion>8.22.0</IdentityModelVersion>
+    <IdentityModelVersion>8.23.0</IdentityModelVersion>
   </PropertyGroup>
 
   <ItemGroup Label="Framework">
