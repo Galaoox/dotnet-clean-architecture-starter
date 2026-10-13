@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <AspNetCoreVersion>10.0.11</AspNetCoreVersion>
+    <AspNetCoreVersion>10.0.13</AspNetCoreVersion>
     <EfCoreVersion>10.0.11</EfCoreVersion>
     <OpenTelemetryVersion>1.18.0</OpenTelemetryVersion>
     <IdentityModelVersion>8.22.0</IdentityModelVersion>
